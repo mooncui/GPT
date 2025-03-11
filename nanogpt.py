@@ -203,6 +203,8 @@ def train():
 			total_loss += loss.item()
 		avg_loss = total_loss / len(dataloader)
 		print(f"Epoch {epoch+1}/{num_epochs}, Loss: {avg_loss:.4f}")
+	model.eval()
+	return model
 #	train_data = []
 #	for batch_inputs, batch_targets in dataloader:
 #		# Squeeze the batch dimension since batch_size is 1
@@ -224,8 +226,6 @@ def train():
 #		avg_loss = total_loss / len(dataloader)
 #		print(f"Epoch {epoch+1}/{num_epochs}, Loss: {avg_loss:.4f}")
 	# After training, randomly pick a sample for testing
-	model.eval()
-	return model
 	#i = 0
 	#while i < 100:
 	#	i = i + 1
@@ -248,6 +248,8 @@ def train():
 
 
 if __name__ == "__main__":
+	model = train()
+	test(model)
 	#num_epochs = 10 
 	#batch_size = 1  # Fixed batch size of 1
 	#learning_rate = 1e-3
@@ -262,8 +264,6 @@ if __name__ == "__main__":
 	#mlp_size = embedding_dim * 4
 	#model = NanoGPT(voc_size, embedding_dim, seq_length, q_k_size, v_size, n_head, mlp_size).to("cpu")
 	#test(model)
-	model = train()
-	test(model)
 	#VOC_SIZE = 3 
 	#V_SIZE = 16
 	#Q_K_SIZE = 16
